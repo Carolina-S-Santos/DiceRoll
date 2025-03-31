@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-dices}",
+      "name": "Debug swift-dices",
+      "program": "${workspaceFolder:swift-dices}/.build/debug/swift-dices",
+      "preLaunchTask": "swift: Build Debug swift-dices"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-dices}",
+      "name": "Release swift-dices",
+      "program": "${workspaceFolder:swift-dices}/.build/release/swift-dices",
+      "preLaunchTask": "swift: Build Release swift-dices"
+    }
+  ]
+}
