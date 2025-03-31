@@ -1,3 +1,5 @@
+import Foundation
+
 class Player {
     var name: String?
     var health: Int = 100
@@ -18,46 +20,61 @@ class Player {
     }
 
     func attack() -> Bool {
-        print("\(name ?? "Player")'s turn: Roll your d20 for attack!")
+        Thread.sleep(forTimeInterval: 2)
+        print("\n\(name ?? "Player")'s turn: Roll your d20 for attack!")
         _ = readLine()
 
         let attackRoll = rollDice()
-        print("\(name ?? "Player") rolls a \(attackRoll) for attack!")
+        Thread.sleep(forTimeInterval: 1)
+        print("\n\(name ?? "Player") rolls a \(attackRoll) for attack!")
 
         if attackRoll > 10 {
-            print("\(name ?? "Player") attacks successfully!")
+            Thread.sleep(forTimeInterval: 1)
+            print("\n\(name ?? "Player") attacks successfully!")
             return true
         } else {
-            print("\(name ?? "Player")'s attack failed.")
+            Thread.sleep(forTimeInterval: 1)
+            print("\n\(name ?? "Player")'s attack failed.")
             return false
         }
     }
 
-    func defend() -> Int {
-        print("\(name ?? "Player")'s turn: Roll your d20 for defense!")
+    enum DefenseResult {
+        case Success, Counter, Fail
+    }
+    
+    func defend() -> DefenseResult {
+        Thread.sleep(forTimeInterval: 2)
+        print("\n\(name ?? "Player")'s turn: Roll your d20 for defense!")
         _ = readLine()
 
         let defendRoll = rollDice()
-        print("\(name ?? "Player") rolls a \(defendRoll) for defense!")
+        Thread.sleep(forTimeInterval: 1)
+        print("\n\(name ?? "Player") rolls a \(defendRoll) for defense!")
 
         if defendRoll > 12 && defendRoll != 20 {
-            print("\(name ?? "Player") defends successfully!")
-            return 0
+            Thread.sleep(forTimeInterval: 1)
+            print("\n\(name ?? "Player") defends successfully!")
+            return .Success
         } else if defendRoll == 20 {
-            print("\(name ?? "Player") gets a counter attack")
-            return 1
+            Thread.sleep(forTimeInterval: 1)
+            print("\n\(name ?? "Player") gets a counter attack")
+            return .Counter
         } else {
-            print("\(name ?? "Player")'s defense failed.")
-            return -1
+            Thread.sleep(forTimeInterval: 1)
+            print("\n\(name ?? "Player")'s defense failed.")
+            return .Fail
         }
     }
 
     func damage() -> Int {
-        print("\(name ?? "Player") rolls for damage!")
+        Thread.sleep(forTimeInterval: 2)
+        print("\n\(name ?? "Player") rolls for damage!")
         _ = readLine()
 
         let damageRoll = rollDice()
-        print("\(name ?? "Player") deals \(damageRoll) damage!")
+        Thread.sleep(forTimeInterval: 1)
+        print("\n\(name ?? "Player") deals \(damageRoll) damage!")
         return damageRoll
     }
 
@@ -69,9 +86,11 @@ class Player {
     }
     func status() {
         if let playerName = name {
-            print("Player: \(playerName), Health: \(health) HP")
+            Thread.sleep(forTimeInterval: 2)
+            print("\nPlayer: \(playerName), Health: \(health) HP")
         } else {
-            print("Player name is not set, Health: \(health) HP")
+            Thread.sleep(forTimeInterval: 2)
+            print("\nPlayer name is not set, Health: \(health) HP")
         }
     }
 
