@@ -83,7 +83,7 @@ func playGame() {
                 if !(player1.isPlayerAlive()) {
 //                    Thread.sleep(forTimeInterval: 2)
                     if let name = (player1.name){
-                        print("\(name) (name) was turned to dust by a powerful curse, their soul lost to the void!")
+                        print("\(name) was turned to dust by a powerful curse, their soul lost to the void!")
                         return
                     }
                 }
@@ -119,4 +119,8 @@ for round in 1...5 {
 }
 
 //Thread.sleep(forTimeInterval: 2)
-print("\n//----------------GAME OVER----------------//\n")
+print("\n .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--.")
+print("/ .. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\")
+print("\\ \\/\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ \\/ /")
+//print(" \/ /`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'\/ /")
+
