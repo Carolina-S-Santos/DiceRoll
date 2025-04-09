@@ -5,7 +5,6 @@ class Player {
     var name: String?
     var health: Int = 2
     
-
     init() {
     }
 
@@ -30,8 +29,8 @@ class Player {
         print("\n\(name ?? "Player")'s turn: Roll your d20 for attack!")
         _ = readLine()
 
-        let attackRoll = rollDice(20)
-//        let attackRoll = 20
+//        let attackRoll = rollDice(20)
+        let attackRoll = 1
 //        Thread.sleep(forTimeInterval: 1)
         print("\(name ?? "Player") rolls a \(attackRoll) for attack!")
 
@@ -44,8 +43,10 @@ class Player {
             //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player") Used their ULT, you cannot run!")
             return .Perfect
+            
         } else if attackRoll == 1{
             return .Disaster
+            
         } else {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player")'s attack failed.")
@@ -68,15 +69,17 @@ class Player {
         if defendRoll == 1 {
             disaster(name: name ?? "Player")
             return .Disaster
-        }
-        else if defendRoll > 12 && defendRoll != 20 {
+            
+        } else if defendRoll > 12 && defendRoll != 20 {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player") defends successfully!")
             return .Success
+            
         } else if defendRoll == 20 {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player") gets a counter attack")
             return .Counter
+            
         } else {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player")'s defense failed.")
