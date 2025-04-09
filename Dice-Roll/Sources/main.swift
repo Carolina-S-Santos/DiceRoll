@@ -10,12 +10,35 @@ import ColorizeSwift
 
 var game = DiceGame()
 
+func setName() -> String {
+    guard let typedName = readLine() else {
+        return ""
+    }
+    return typedName
+}
+
+
+print("🎲Welcome to the DiceRoll Game!🎲".yellow().backgroundColor(.aquamarine1))
+print("Enter the names of the players:")
+print("Player 1: ")
+//let namePlayer1 =
+var player1 = Player(name: setName())
+
+print("Player 2: ")
+var player2 = Player(name: setName())
+
 for round in 1...5 {
 //    Thread.sleep(forTimeInterval: 2)
+    if round == 1 {
+        
+    }
     
     print("\n//----------------ROUND \(round)----------------//")
     game.playGame()
-    if round == 5 {
+    if !player1.isPlayerAlive() || !player2.isPlayerAlive() {
+        break
+    }
+    else if round == 5 {
         print("\nNo more rounds left.")
         break
     }

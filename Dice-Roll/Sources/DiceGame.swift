@@ -16,103 +16,80 @@ class DiceGame : Game {
     var height: Int { terminal.canvasHeight }
     var direction: Direction = .right
     
-    override func draw() {
-        // Borders
-        for x in 0..<width {
-            terminal.draw(x: x, y: 0, symbol: "─")
-            terminal.draw(x: x, y: height - 1, symbol: "─")
-        }
-        for y in 0..<height {
-            terminal.draw(x: 0, y: y, symbol: "│")
-            terminal.draw(x: width - 1, y: y, symbol: "│")
-        }
-        terminal.draw(x: 0, y: 0, symbol: "┌")
-        terminal.draw(x: width - 1, y: 0, symbol: "┐")
-        terminal.draw(x: 0, y: height - 1, symbol: "└")
-        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
-
-    }
+//    override func draw() {
+//        // Borders
+//        for x in 0..<width {
+//            terminal.draw(x: x, y: 0, symbol: "─")
+//            terminal.draw(x: x, y: height - 1, symbol: "─")
+//        }
+//        for y in 0..<height {
+//            terminal.draw(x: 0, y: y, symbol: "│")
+//            terminal.draw(x: width - 1, y: y, symbol: "│")
+//        }
+//        terminal.draw(x: 0, y: 0, symbol: "┌")
+//        terminal.draw(x: width - 1, y: 0, symbol: "┐")
+//        terminal.draw(x: 0, y: height - 1, symbol: "└")
+//        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
+//
+//    }
     
     // Process any inputs from user
-    override func processInput(_ key: String) {
-        switch key {
-                case "w": if direction != .down { direction = .up }
-                case "s": if direction != .up { direction = .down }
-                case "a": if direction != .right { direction = .left }
-                case "d": if direction != .left { direction = .right }
-                case "q": isRunning = false
-                default: break
-                }
-        print(key)
+    override func processInput(_ key: String){
+        //        key
+        for char in key {
+            terminal.draw(x: width - 1, y: height - 1, symbol: char)
         }
-
+    }
+    
     func playGame() {
-        
-        var player1 = Player()
-        var player2 = Player()
-
-        print("🎲Welcome to the DiceRoll Game!🎲".yellow().backgroundColor(.aquamarine1))
-        print("Enter the names of the players:")
-        
-        print("Player 1: ")
-        player1.setName()
-
-        print("Player 2: ")
-        player2.setName()
         
         let player1Attack = player1.attack()
         
         switch player1Attack {
-            case .Success:
+            case .SuccessAttack:
                 let defense = player2.defend()
-//            let defense = .Success
             
-                if defense == .Success {
-                    
-                } else if defense == .Counter {
+                if defense == .CounterDefense {
                     player1.loseHealth(amount: player2.damage())
                     
                     if !(player1.isPlayerAlive()) {
                         //                Thread.sleep(forTimeInterval: 2)
-                        if let name = (player1.name){
-                            print("\(name)")
-                            return
-                        }
+                        print("\(player1.name) is dead") //MELHORAR
+                        return
+                        
                     }
                     
                     player1.status()
                     
-                } else if defense == .Disaster {
+                } else if defense == .DisasterDefense {
                     return
                     
-                } else {
+                } else if defense == .FailDefense {
                     player2.loseHealth(amount: player1.damage())
         
                     if !(player2.isPlayerAlive()) {
         //                Thread.sleep(forTimeInterval: 2)
-                        if let name = (player2.name){
-                            print("\(name)")
-                            return
-                        }
+                        print("\(player2.name)")
+                        return
                     }
                     
                     player2.status()
                 }
-            case .Perfect:
+            case .PerfectAttack:
                 player2.loseHealth(amount: player1.damage())
             
             if !(player2.isPlayerAlive()) {
                 //            Thread.sleep(forTimeInterval: 2)
-                if let name = (player2.name){
-                    print("\(name)")
-                    return
-                }
+                print("\(player2.name)")
+                return
             }
                 
             player2.status()
                 
-            case .Disaster:
+            case .DisasterAttack:
                 player1.health = 0
+            
+                player1.disaster()
                 return
                 
             default:
@@ -122,58 +99,53 @@ class DiceGame : Game {
         let player2Attack = player2.attack()
         
         switch player2Attack{
-            case .Success:
+            case .SuccessAttack:
                     let defense = player1.defend()
-            
-                    if defense == .Success {
-                        return
                         
-                    } else if defense == .Counter {
+                     if defense == .CounterDefense {
                         player2.loseHealth(amount: player1.damage())
         
                         if !(player2.isPlayerAlive()) {
         //                    Thread.sleep(forTimeInterval: 2)
-                            if let name = (player2.name){
-                                print("\(name) ")
-                                return
-                            }
-                            
+                            print("\(player2.name) is dead")
                             return
                         }
                         
-                    player2.status()
+                     player2.status()
                         
-                    } else if defense == .Disaster{
+                    } else if defense == .DisasterDefense{
+                        player1.health = 0
+                        player1.disaster()
+                        //print de morte
                         return
                         
-                    } else {
+                    } else if defense == .FailDefense {
                         player1.loseHealth(amount: player2.damage())
         
                         if !(player1.isPlayerAlive()) {
         //                    Thread.sleep(forTimeInterval: 2)
-                            if let name = (player1.name){
-                                print("\(name) ")
-                                return
-                            }
+                            print("\(player1.name) morreu")
+                            return
                         }
                         
                         player1.status()
                     }
-            case .Perfect:
+            case .PerfectAttack:
                 player1.loseHealth(amount: player2.damage())
             
                 if !(player1.isPlayerAlive()) {
         //            Thread.sleep(forTimeInterval: 2)
-                    if let name = (player1.name){
-                        print("\(name) ")
+                    print("\(player1.name) morreu")
                         return
-                    }
+                    
                 }
             
                 player1.status()
                 
-            case .Disaster:
+            case .DisasterAttack:
                 player2.health = 0
+                player2.disaster()
+                //print de morte
                 return
             
             default:
