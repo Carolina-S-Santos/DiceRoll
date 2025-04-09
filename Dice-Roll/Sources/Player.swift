@@ -22,7 +22,7 @@ class Player {
     }
 
     enum AttackResult {
-        case Success, Perfect, Fail
+        case Success, Perfect, Fail, Disaster
     }
     
     func attack() -> AttackResult {
@@ -41,9 +41,11 @@ class Player {
             return .Success
             
         } else if attackRoll == 20 {
-//            Thread.sleep(forTimeInterval: 1)
+            //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player") Used their ULT, you cannot run!")
             return .Perfect
+        } else if attackRoll == 1{
+            return .Disaster
         } else {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player")'s attack failed.")
@@ -52,7 +54,7 @@ class Player {
     }
 
     enum DefenseResult {
-        case Success, Counter, Fail
+        case Success, Counter, Fail, Disaster
     }
     
     func defend() -> DefenseResult {
@@ -63,8 +65,11 @@ class Player {
         let defendRoll = rollDice(20)
 //        Thread.sleep(forTimeInterval: 1)
         print("\(name ?? "Player") rolls a \(defendRoll) for defense!")
-
-        if defendRoll > 12 && defendRoll != 20 {
+        if defendRoll == 1 {
+            disaster(name: name ?? "Player")
+            return .Disaster
+        }
+        else if defendRoll > 12 && defendRoll != 20 {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player") defends successfully!")
             return .Success
@@ -76,6 +81,34 @@ class Player {
 //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name ?? "Player")'s defense failed.")
             return .Fail
+        }
+    }
+    
+    enum Disasters : String, CaseIterable {
+        case dragon
+        case troll
+        case abyss
+        case hydra
+        case dust
+        case portal
+    }
+    
+    func disaster(name: String) {
+        var disaster = Disasters.allCases.randomElement()
+        
+        switch disaster {
+            case .dragon:
+                print("\(name) was eaten by a dragon, your journey ends here!")
+            case .troll:
+                print("\(name) was smashed by a troll, farewell young warrior!")
+            case .abyss:
+                print("\(name) tripped and fell into an abyss, bye bye!")
+            case .hydra:
+                print("\(name) was consumed by a hydra, its many heads fighting for the feast!")
+            case .dust:
+                print("\(name) was turned to dust by a powerful curse, their soul lost to the void!")
+            default:
+                print("\(name) was dragged into a portal by a dark sorcery, their fate sealed in another dimension!")
         }
     }
 

@@ -53,22 +53,24 @@ class DiceGame {
                 return
             }else if defense == .Counter {
                 player1.loseHealth(amount: player2.damage())
-    //            print(!(player2.isPlayerAlive()))
+                //            print(!(player2.isPlayerAlive()))
                 if !(player1.isPlayerAlive()) {
-    //                Thread.sleep(forTimeInterval: 2)
+                    //                Thread.sleep(forTimeInterval: 2)
                     if let name = (player1.name){
-                        print("\(name) was eaten by a dragon, your journey ends here!")
+                        print("\(name)")
                         return
                     }
                 }
                 player1.status()
+            }else if defense == .Disaster{
+                return
             }else {
                 player2.loseHealth(amount: player1.damage())
     //            print(!(player1.isPlayerAlive()))
                 if !(player2.isPlayerAlive()) {
     //                Thread.sleep(forTimeInterval: 2)
                     if let name = (player2.name){
-                        print("\(name) was smashed by a troll, farewell young warrior!")
+                        print("\(name)")
                         return
                     }
                 }
@@ -79,10 +81,13 @@ class DiceGame {
             if !(player2.isPlayerAlive()) {
     //            Thread.sleep(forTimeInterval: 2)
                 if let name = (player2.name){
-                    print("\(name) tripped and fell into an abyss, bye bye!")
+                    print("\(name)")
                     return
                 }        }
             player2.status()
+        case .Disaster:
+            //fazer perder vida
+            return
         default: break
         }
 
@@ -98,19 +103,21 @@ class DiceGame {
                     if !(player2.isPlayerAlive()) {
     //                    Thread.sleep(forTimeInterval: 2)
                         if let name = (player2.name){
-                            print("\(name) was consumed by a hydra, its many heads fighting for the feast!")
+                            print("\(name) ")
                             return
                         }
                         return
                     }
                     player2.status()
+                }else if defense == .Disaster{
+                    return
                 }else {
                     player1.loseHealth(amount: player2.damage())
     //                print(!(player1.isPlayerAlive()))
                     if !(player1.isPlayerAlive()) {
     //                    Thread.sleep(forTimeInterval: 2)
                         if let name = (player1.name){
-                            print("\(name) was turned to dust by a powerful curse, their soul lost to the void!")
+                            print("\(name) ")
                             return
                         }
                     }
@@ -121,7 +128,7 @@ class DiceGame {
             if !(player1.isPlayerAlive()) {
     //            Thread.sleep(forTimeInterval: 2)
                 if let name = (player1.name){
-                    print("\(name) was dragged into a portal by a dark sorcery, their fate sealed in another dimension!")
+                    print("\(name) ")
                     return
                 }
             }
