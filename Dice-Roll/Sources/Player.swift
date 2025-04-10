@@ -11,34 +11,6 @@ class Player {
     func rollDice(_ sides : Int) -> Int {
         return Int.random(in: 1...sides)
     }
-    
-//    func rollDice(_ sides : Int) -> Int {
-//        var isHoldingEnter = false
-//        
-//        var result = 0
-//        
-//        while(true) {
-//
-//            if let input = readLine(), input.isEmpty {
-//                if !isHoldingEnter {
-//                    isHoldingEnter = true
-//                    prints.printRollingDice()
-//                }
-//                print("\u{001B}[2J") // limpa
-//                print("\u{001B}[H")  // volta pro topo
-//                result = Int.random(in: 1...sides)
-//                print("\(result)", terminator: "\r") // \r move o cursor para o começo da linha
-////                usleep(100000) // Delay para simular o tempo de rolagem (100ms)
-//            } else {
-//                if isHoldingEnter {
-//                    break
-//                }
-//            }
-//            
-//            break
-//        }
-//        return result
-//    }
 
     enum AttackResult {
         case SuccessAttack, PerfectAttack, FailAttack, DisasterAttack
@@ -46,11 +18,12 @@ class Player {
     
     func attack() -> AttackResult {
 //        Thread.sleep(forTimeInterval: 2)
-        print("\n\(name)'s turn: Press 'Enter' to roll your d20 for attack!")
-        // ideia: fazer o usuario ficar segurando a tecla enter para simular que esta rolando o dado
+        print("\n        /| ________________")
+        print("  O|===|* >________________\\ \(name)'s turn: press 'Enter' to roll your d20 for attack!")
+        print("        \\|")
         _ = readLine()
+        
         animations.printRollingDice()
-//        _ = readLine()
         let attackRoll = rollDice(20)
         animations.printd20(result: attackRoll)
 //        let attackRoll = 1
@@ -83,7 +56,12 @@ class Player {
     
     func defend() -> DefenseResult {
 //        Thread.sleep(forTimeInterval: 2)
-        print("\n\(name)'s turn: Roll your d20 for defense!")
+
+        print(" _____ ")
+        print("||    ||")
+        print("||    || \(name)'s turn: Roll your d20 for defense!")
+        print("\\\\    //")
+        print(" \\\\__//")
         _ = readLine()
         animations.printRollingDice()
         let defendRoll = rollDice(20)

@@ -14,27 +14,27 @@ enum Direction {
 typealias Point = (x: Int, y: Int)
 
 
-class DiceGame : Game {
-    var width: Int { terminal.canvasWidth }
-    var height: Int { terminal.canvasHeight }
-    var direction: Direction = .right
-    
-    override func draw() {
-        // Borders
-        for x in 0..<width {
-            terminal.draw(x: x, y: 0, symbol: "─")
-            terminal.draw(x: x, y: height - 1, symbol: "─")
-        }
-        for y in 0..<height {
-            terminal.draw(x: 0, y: y, symbol: "│")
-            terminal.draw(x: width - 1, y: y, symbol: "│")
-        }
-        terminal.draw(x: 0, y: 0, symbol: "┌")
-        terminal.draw(x: width - 1, y: 0, symbol: "┐")
-        terminal.draw(x: 0, y: height - 1, symbol: "└")
-        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
-        
-    }
+class DiceGame {
+//    var width: Int { terminal.canvasWidth }
+//    var height: Int { terminal.canvasHeight }
+//    var direction: Direction = .right
+//    
+//    override func draw() {
+//        // Borders
+//        for x in 0..<width {
+//            terminal.draw(x: x, y: 0, symbol: "─")
+//            terminal.draw(x: x, y: height - 1, symbol: "─")
+//        }
+//        for y in 0..<height {
+//            terminal.draw(x: 0, y: y, symbol: "│")
+//            terminal.draw(x: width - 1, y: y, symbol: "│")
+//        }
+//        terminal.draw(x: 0, y: 0, symbol: "┌")
+//        terminal.draw(x: width - 1, y: 0, symbol: "┐")
+//        terminal.draw(x: 0, y: height - 1, symbol: "└")
+//        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
+//        
+//    }
     
     // Process any inputs from user
     //por enquanto n ta fazendo nada, os nomes sao imputados com readline

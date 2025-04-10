@@ -34,19 +34,10 @@ func setName() -> String {
     return typedName
 }
 
-// fazer
 animations.printTitle()
-//animations.printSlay()
-//animations.printDragon()
-//animations.printSmash()
-//animations.printGameOver()
 //animations.printRollingDice()
 
-//animations.printHydra()
-// printar welcome
-//print("🎲Welcome to the DiceRoll Game!🎲")
-//animations.printDragon()
-print("Enter the names of the players:".centralized())
+print("\n\n\nEnter the names of the players:".centralized())
 print("Player 1: ".centralized())
 
 var player1 = Player(name: setName())
@@ -70,8 +61,4 @@ for round in 1...5 {
 
 //Thread.sleep(forTimeInterval: 2)
 animations.printGameOver()
-
-
-
-
 
