@@ -11,35 +11,41 @@ enum Direction {
     case up, down, left, right
 }
 
+typealias Point = (x: Int, y: Int)
+
+
 class DiceGame : Game {
     var width: Int { terminal.canvasWidth }
     var height: Int { terminal.canvasHeight }
     var direction: Direction = .right
     
-//    override func draw() {
-//        // Borders
-//        for x in 0..<width {
-//            terminal.draw(x: x, y: 0, symbol: "─")
-//            terminal.draw(x: x, y: height - 1, symbol: "─")
-//        }
-//        for y in 0..<height {
-//            terminal.draw(x: 0, y: y, symbol: "│")
-//            terminal.draw(x: width - 1, y: y, symbol: "│")
-//        }
-//        terminal.draw(x: 0, y: 0, symbol: "┌")
-//        terminal.draw(x: width - 1, y: 0, symbol: "┐")
-//        terminal.draw(x: 0, y: height - 1, symbol: "└")
-//        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
-//
-//    }
+    override func draw() {
+        // Borders
+        for x in 0..<width {
+            terminal.draw(x: x, y: 0, symbol: "─")
+            terminal.draw(x: x, y: height - 1, symbol: "─")
+        }
+        for y in 0..<height {
+            terminal.draw(x: 0, y: y, symbol: "│")
+            terminal.draw(x: width - 1, y: y, symbol: "│")
+        }
+        terminal.draw(x: 0, y: 0, symbol: "┌")
+        terminal.draw(x: width - 1, y: 0, symbol: "┐")
+        terminal.draw(x: 0, y: height - 1, symbol: "└")
+        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
+        
+    }
     
     // Process any inputs from user
-    override func processInput(_ key: String){
-        //        key
-        for char in key {
-            terminal.draw(x: width - 1, y: height - 1, symbol: char)
-        }
-    }
+    //por enquanto n ta fazendo nada, os nomes sao imputados com readline
+    //    override func processInput(_ key: String){
+    //      print(key)
+    //    }
+    
+    //    override func loop() {
+    // colocar jogo aqui dentro
+    // }
+
     
     func playGame() {
         
@@ -54,12 +60,13 @@ class DiceGame : Game {
                     
                     if !(player1.isPlayerAlive()) {
                         //                Thread.sleep(forTimeInterval: 2)
-                        print("\(player1.name) is dead") //MELHORAR
+                        animations.printSlay()
+                        animations.whoWins(winner: player2.name, loser: player1.name)
                         return
                         
                     }
                     
-                    player1.status()
+                    animations.status()
                     
                 } else if defense == .DisasterDefense {
                     return
@@ -69,22 +76,24 @@ class DiceGame : Game {
         
                     if !(player2.isPlayerAlive()) {
         //                Thread.sleep(forTimeInterval: 2)
-                        print("\(player2.name)")
+                        animations.printSlay()
+                        animations.whoWins(winner: player1.name, loser: player2.name)
                         return
                     }
                     
-                    player2.status()
+                    animations.status()
                 }
             case .PerfectAttack:
                 player2.loseHealth(amount: player1.damage())
             
             if !(player2.isPlayerAlive()) {
                 //            Thread.sleep(forTimeInterval: 2)
-                print("\(player2.name)")
+                animations.printSlay()
+                animations.whoWins(winner: player1.name, loser: player2.name)
                 return
             }
                 
-            player2.status()
+            animations.status()
                 
             case .DisasterAttack:
                 player1.health = 0
@@ -107,11 +116,12 @@ class DiceGame : Game {
         
                         if !(player2.isPlayerAlive()) {
         //                    Thread.sleep(forTimeInterval: 2)
-                            print("\(player2.name) is dead")
+                            animations.printSlay()
+                            animations.whoWins(winner: player1.name, loser: player2.name)
                             return
                         }
                         
-                     player2.status()
+                         animations.status()
                         
                     } else if defense == .DisasterDefense{
                         player1.health = 0
@@ -124,40 +134,36 @@ class DiceGame : Game {
         
                         if !(player1.isPlayerAlive()) {
         //                    Thread.sleep(forTimeInterval: 2)
-                            print("\(player1.name) morreu")
+                            animations.printSlay()
+                            animations.whoWins(winner: player2.name, loser: player1.name)
                             return
                         }
                         
-                        player1.status()
+                        animations.status()
                     }
             case .PerfectAttack:
                 player1.loseHealth(amount: player2.damage())
             
                 if !(player1.isPlayerAlive()) {
         //            Thread.sleep(forTimeInterval: 2)
-                    print("\(player1.name) morreu")
+                    animations.printSlay()
+                    animations.whoWins(winner: player2.name, loser: player1.name)
                         return
                     
                 }
             
-                player1.status()
+            animations.status()
                 
             case .DisasterAttack:
                 player2.health = 0
                 player2.disaster()
-                //print de morte
                 return
             
             default:
                 break
         }
         
-        player1.status()
-        player2.status()
+        animations.status()
         
-        if player1.health == 0 || player2.health == 0{
-            print("\nGame Over!")
-            return
-        }
     }
 }

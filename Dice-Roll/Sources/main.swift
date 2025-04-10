@@ -4,11 +4,28 @@
 import Foundation
 import ColorizeSwift
 
+extension String {
+    func centralized() -> String {
+        let terminalWidth = ProcessInfo.processInfo.environment["COLUMNS"].flatMap(Int.init) ?? 120
+        
+        let spaces = max((terminalWidth - self.count)/2, 0)
+        let lines = self.split(separator: "\n", omittingEmptySubsequences: false)
+        let padding = String(repeating: " ", count: spaces)
+        
+        return lines.map { line in
+            let lineStr = String(line)
+            return padding + lineStr
+        }.joined(separator: "\n")        }
+}
+
 
 //let game = Game()
 //game.start()
 
+var initialSong = AudioPlayer()
+initialSong.play(song: "/Users/aluno-111/Desktop/DiceRoll/Dice-Roll/Music/woods-of-imagination.mp3")
 var game = DiceGame()
+var animations = Prints()
 
 func setName() -> String {
     guard let typedName = readLine() else {
@@ -17,21 +34,28 @@ func setName() -> String {
     return typedName
 }
 
+// fazer
+animations.printTitle()
+//animations.printSlay()
+//animations.printDragon()
+//animations.printSmash()
+//animations.printGameOver()
+//animations.printRollingDice()
 
-print("🎲Welcome to the DiceRoll Game!🎲".yellow().backgroundColor(.aquamarine1))
-print("Enter the names of the players:")
-print("Player 1: ")
-//let namePlayer1 =
+//animations.printHydra()
+// printar welcome
+//print("🎲Welcome to the DiceRoll Game!🎲")
+//animations.printDragon()
+print("Enter the names of the players:".centralized())
+print("Player 1: ".centralized())
+
 var player1 = Player(name: setName())
 
-print("Player 2: ")
+print("Player 2: ".centralized())
 var player2 = Player(name: setName())
-
+initialSong.pause()
 for round in 1...5 {
 //    Thread.sleep(forTimeInterval: 2)
-    if round == 1 {
-        
-    }
     
     print("\n//----------------ROUND \(round)----------------//")
     game.playGame()
@@ -45,22 +69,7 @@ for round in 1...5 {
 }
 
 //Thread.sleep(forTimeInterval: 2)
-print("\n .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--.")
-print("/ .. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\")
-print("\\ \\/\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ \\/ /")
-print(" \\/ /`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'\\/ /")
-print(" / /\\                                                            / /\\")
-print("/ /\\ \\   ____    _    __  __ _____    _____     _______ ____    / /\\ \\")
-print("\\ \\/ /  / ___|  / \\  |  \\/  | ____|  / _ \\ \\   / / ____|  _ \\   \\ \\/ /")
-print(" \\/ /  | |  _  / _ \\ | |\\/| |  _|   | | | \\ \\ / /|  _| | |_) |   \\/ /")
-print(" / /\\  | |_| |/ ___ \\| |  | | |___  | |_| |\\ V / | |___|  _ <    / /\\")
-print("/ /\\ \\  \\____/_/   \\_\\_|  |_|_____|  \\___/  \\_/  |_____|_| \\_\\  / /\\ \\")
-print("\\ \\/ /                                                          \\ \\/ /")
-print(" \\/ /                                                            \\/ /")
-print(" / /\\.--..--..--..--..--..--..--..--..--..--..--..--..--..--..--./ /\\")
-print("/ /\\ \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\.. \\/\\ \\")
-print("\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `'\\ `' /")
-print(" `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--' ")
+animations.printGameOver()
 
 
 

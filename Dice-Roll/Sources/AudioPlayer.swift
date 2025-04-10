@@ -29,7 +29,7 @@ class AudioPlayer {
             audioPlayer?.play()
             isPlaying = true
             self.currentSong = filePath
-            print("Playing song: \(filePath)")
+//            print("Playing song: \(filePath)")
         } catch {
             print("Error loading the song: \(error.localizedDescription)")
         }
@@ -41,7 +41,7 @@ class AudioPlayer {
         if isPlaying {
             audioPlayer?.pause()
             isPlaying = false
-            print("Song paused.")
+//            print("Song paused.")
         } else {
             print("No song is currently playing.")
         }
@@ -62,7 +62,7 @@ class AudioPlayer {
     func stop() {
         audioPlayer?.stop()
         isPlaying = false
-        print("Song stopped.")
+//        print("Song stopped.")
     }
 
     // Change the song (stop the current one and play a new one)

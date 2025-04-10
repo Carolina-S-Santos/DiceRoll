@@ -66,6 +66,7 @@ private struct TerminalHelper {
     static func windowSize() -> (width: Int, height: Int) {
         var ws = winsize()
         _ = ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws)
+//        return (Int(ws.ws_col), Int(ws.ws_row) - 1)
         return (Int(ws.ws_col), Int(ws.ws_row))
     }
 
