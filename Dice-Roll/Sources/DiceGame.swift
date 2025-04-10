@@ -15,38 +15,7 @@ typealias Point = (x: Int, y: Int)
 
 
 class DiceGame {
-//    var width: Int { terminal.canvasWidth }
-//    var height: Int { terminal.canvasHeight }
-//    var direction: Direction = .right
-//    
-//    override func draw() {
-//        // Borders
-//        for x in 0..<width {
-//            terminal.draw(x: x, y: 0, symbol: "─")
-//            terminal.draw(x: x, y: height - 1, symbol: "─")
-//        }
-//        for y in 0..<height {
-//            terminal.draw(x: 0, y: y, symbol: "│")
-//            terminal.draw(x: width - 1, y: y, symbol: "│")
-//        }
-//        terminal.draw(x: 0, y: 0, symbol: "┌")
-//        terminal.draw(x: width - 1, y: 0, symbol: "┐")
-//        terminal.draw(x: 0, y: height - 1, symbol: "└")
-//        terminal.draw(x: width - 1, y: height - 1, symbol: "┘")
-//        
-//    }
-    
-    // Process any inputs from user
-    //por enquanto n ta fazendo nada, os nomes sao imputados com readline
-    //    override func processInput(_ key: String){
-    //      print(key)
-    //    }
-    
-    //    override func loop() {
-    // colocar jogo aqui dentro
-    // }
 
-    
     func playGame() {
         
         let player1Attack = player1.attack()
@@ -61,7 +30,7 @@ class DiceGame {
                     if !(player1.isPlayerAlive()) {
                         //                Thread.sleep(forTimeInterval: 2)
                         animations.printSlay()
-                        animations.whoWins(winner: player2.name, loser: player1.name)
+//                        animations.whoWins(winner: player2.name, loser: player1.name)
                         return
                         
                     }
@@ -77,7 +46,7 @@ class DiceGame {
                     if !(player2.isPlayerAlive()) {
         //                Thread.sleep(forTimeInterval: 2)
                         animations.printSlay()
-                        animations.whoWins(winner: player1.name, loser: player2.name)
+//                        animations.whoWins(winner: player1.name, loser: player2.name)
                         return
                     }
                     
@@ -89,7 +58,7 @@ class DiceGame {
             if !(player2.isPlayerAlive()) {
                 //            Thread.sleep(forTimeInterval: 2)
                 animations.printSlay()
-                animations.whoWins(winner: player1.name, loser: player2.name)
+//                animations.whoWins(winner: player1.name, loser: player2.name)
                 return
             }
                 
@@ -117,7 +86,7 @@ class DiceGame {
                         if !(player2.isPlayerAlive()) {
         //                    Thread.sleep(forTimeInterval: 2)
                             animations.printSlay()
-                            animations.whoWins(winner: player1.name, loser: player2.name)
+//                            animations.whoWins(winner: player1.name, loser: player2.name)
                             return
                         }
                         
@@ -135,7 +104,7 @@ class DiceGame {
                         if !(player1.isPlayerAlive()) {
         //                    Thread.sleep(forTimeInterval: 2)
                             animations.printSlay()
-                            animations.whoWins(winner: player2.name, loser: player1.name)
+//                            animations.whoWins(winner: player2.name, loser: player1.name)
                             return
                         }
                         
@@ -147,7 +116,7 @@ class DiceGame {
                 if !(player1.isPlayerAlive()) {
         //            Thread.sleep(forTimeInterval: 2)
                     animations.printSlay()
-                    animations.whoWins(winner: player2.name, loser: player1.name)
+//                    animations.whoWins(winner: player2.name, loser: player1.name)
                         return
                     
                 }

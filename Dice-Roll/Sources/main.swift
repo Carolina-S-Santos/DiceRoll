@@ -8,7 +8,7 @@ extension String {
     func centralized() -> String {
         let terminalWidth = ProcessInfo.processInfo.environment["COLUMNS"].flatMap(Int.init) ?? 120
         
-        let spaces = max((terminalWidth - self.count)/2, 0)
+        let spaces = max((terminalWidth - self.count)/3, 0)
         let lines = self.split(separator: "\n", omittingEmptySubsequences: false)
         let padding = String(repeating: " ", count: spaces)
         
@@ -18,9 +18,6 @@ extension String {
         }.joined(separator: "\n")        }
 }
 
-
-//let game = Game()
-//game.start()
 
 var initialSong = AudioPlayer()
 initialSong.play(song: "/Users/aluno-111/Desktop/DiceRoll/Dice-Roll/Music/woods-of-imagination.mp3")
@@ -35,30 +32,42 @@ func setName() -> String {
 }
 
 animations.printTitle()
-//animations.printRollingDice()
-
-print("\n\n\nEnter the names of the players:".centralized())
-print("Player 1: ".centralized())
-
-var player1 = Player(name: setName())
-
-print("Player 2: ".centralized())
-var player2 = Player(name: setName())
-initialSong.pause()
-for round in 1...5 {
-//    Thread.sleep(forTimeInterval: 2)
+var answer = "n"
+//repeat {
     
-    print("\n//----------------ROUND \(round)----------------//")
-    game.playGame()
-    if !player1.isPlayerAlive() || !player2.isPlayerAlive() {
-        break
+    print("\n\n\nEnter the names of the players:\n")
+    print("Player 1: ")
+    
+    var player1 = Player(name: setName())
+    
+    print("\nPlayer 2: ")
+    var player2 = Player(name: setName())
+//    initialSong.pause()
+    for round in 1...5 {
+        //    Thread.sleep(forTimeInterval: 2)
+        
+        print("\n//----------------ROUND \(round)----------------//".centralized())
+        game.playGame()
+        if !player1.isPlayerAlive() || !player2.isPlayerAlive() {
+            if !player1.isPlayerAlive() {
+                animations.whoWins(winner: player2.name, loser: player1.name)
+            } else {
+                animations.whoWins(winner: player1.name, loser: player2.name)
+            }
+            
+            
+            break
+        }
+        else if round == 5 {
+            print("\nNo more rounds left.")
+            break
+        }
     }
-    else if round == 5 {
-        print("\nNo more rounds left.")
-        break
+    
+    //Thread.sleep(forTimeInterval: 2)
+    animations.printGameOver()
+//    print("\n\n Would you like to play again?")
+    guard let answer = readLine() else {
+        fatalError()
     }
-}
-
-//Thread.sleep(forTimeInterval: 2)
-animations.printGameOver()
-
+//} while answer.lowercased() == "y"

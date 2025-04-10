@@ -9,7 +9,9 @@ class Player {
     }
 
     func rollDice(_ sides : Int) -> Int {
-        return Int.random(in: 1...sides)
+        let options = [1, 5, 12, 20]
+            return options.randomElement()!
+//        return Int.random(in: 1, 5, 12, 20)
     }
 
     enum AttackResult {
@@ -25,6 +27,8 @@ class Player {
         
         animations.printRollingDice()
         let attackRoll = rollDice(20)
+//        let attackRoll = 1
+        
         animations.printd20(result: attackRoll)
 //        let attackRoll = 1
         Thread.sleep(forTimeInterval: 0.5)
@@ -37,7 +41,9 @@ class Player {
             
         } else if attackRoll == 20 {
             //            Thread.sleep(forTimeInterval: 1)
-            print("\n\(name) Used their ULT, you cannot run!")
+            print("\n\(name) Used their ULT, you cannot run!\n\n")
+            animations.printUlt()
+
             return .PerfectAttack
             
         } else if attackRoll == 1{
@@ -103,29 +109,29 @@ class Player {
         
         switch disaster {
             case .dragon:
-            print("\n\(self.name) was eaten by a dragon, your journey ends here!")
+            print("\n\n\n\(self.name) was eaten by a dragon, your journey ends here!".uppercased().centralized())
             animations.printDust()
             case .troll:
-            print("\(self.name) was smashed by a troll, farewell young warrior!")
+            print("\n\n\n\(self.name) was smashed by a troll, farewell young warrior!".uppercased().centralized())
             animations.printSmash()
             case .abyss:
-            print("\(self.name) tripped and fell into an abyss, bye bye!")
+            print("\n\n\n\(self.name) tripped and fell into an abyss, bye bye!".uppercased().centralized())
             animations.printAbyss()
             case .hydra:
-            print("\(self.name) was consumed by a hydra, its many heads fighting for the feast!")
+            print("\n\n\n\(self.name) was consumed by a hydra, its many heads fighting for the feast!".uppercased().centralized())
             animations.printHydra()
             case .dust:
-            print("\(self.name) was turned to dust by a powerful curse, their soul lost to the void!")
+            print("\n\n\n\(self.name) was turned to dust by a powerful curse, their soul lost to the void!".uppercased().centralized())
             animations.printDust()
             default:
-            print("\(self.name) was dragged into a portal by a dark sorcery, their fate sealed in another dimension!")
+            print("\n\n\n\(self.name) was dragged into a portal by a dark sorcery, their fate sealed in another dimension!".uppercased().centralized())
             animations.printPortal()
         }
     }
 
     func damage() -> Int {
 //        Thread.sleep(forTimeInterval: 2)
-        print("\n\(name) rolls for damage!")
+        print("\n\(name) rolls for damage!\n")
         _ = readLine()
         // D6.printRollingDice()
         let damageRoll = rollDice(6)
