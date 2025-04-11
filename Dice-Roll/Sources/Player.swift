@@ -2,16 +2,16 @@ import Foundation
 
 class Player {
     var name: String
-    var health: Int = 2
+    var health: Int = 10
     
     init(name: String) {
         self.name = name
     }
 
     func rollDice(_ sides : Int) -> Int {
-        let options = [1, 5, 12, 20]
-            return options.randomElement()!
-//        return Int.random(in: 1, 5, 12, 20)
+        let numbers = [2, 6, 5, 14, 20]
+        return numbers.randomElement()!
+        //        return Int.random(in:1...sides)
     }
 
     enum AttackResult {
@@ -19,7 +19,6 @@ class Player {
     }
     
     func attack() -> AttackResult {
-//        Thread.sleep(forTimeInterval: 2)
         print("\n        /| ________________")
         print("  O|===|* >________________\\ \(name)'s turn: press 'Enter' to roll your d20 for attack!")
         print("        \\|")
@@ -27,20 +26,16 @@ class Player {
         
         animations.printRollingDice()
         let attackRoll = rollDice(20)
-//        let attackRoll = 1
         
         animations.printd20(result: attackRoll)
-//        let attackRoll = 1
         Thread.sleep(forTimeInterval: 0.5)
         print("\(name) rolls a \(attackRoll) for attack!")
 
         if attackRoll > 10 && attackRoll != 20 {
-//            Thread.sleep(forTimeInterval: 1)
             print("\n\(name) attacks successfully!")
             return .SuccessAttack
             
         } else if attackRoll == 20 {
-            //            Thread.sleep(forTimeInterval: 1)
             print("\n\(name) Used their ULT, you cannot run!\n\n")
             animations.printUlt()
 
@@ -50,7 +45,6 @@ class Player {
             return .DisasterAttack
             
         } else {
-//            Thread.sleep(forTimeInterval: 1)
             print("\n\(name)'s attack failed.")
             return .FailAttack
         }
@@ -61,7 +55,6 @@ class Player {
     }
     
     func defend() -> DefenseResult {
-//        Thread.sleep(forTimeInterval: 2)
 
         print(" _____ ")
         print("||    ||")
@@ -70,26 +63,25 @@ class Player {
         print(" \\\\__//")
         _ = readLine()
         animations.printRollingDice()
+        
         let defendRoll = rollDice(20)
         animations.printd20(result: defendRoll)
         Thread.sleep(forTimeInterval: 0.5)
         print("\(name) rolls a \(defendRoll) for defense!")
+        
         if defendRoll == 1 {
             disaster()
             return .DisasterDefense
             
         } else if defendRoll > 12 && defendRoll != 20 {
-//            Thread.sleep(forTimeInterval: 1)
             print("\n\(name) defends successfully!")
             return .SuccessDefense
             
         } else if defendRoll == 20 {
-//            Thread.sleep(forTimeInterval: 1)
             print("\n\(name) gets a counter attack")
             return .CounterDefense
             
         } else {
-//            Thread.sleep(forTimeInterval: 1)
             print("\n\(name)'s defense failed.")
             return .FailDefense
         }
@@ -110,7 +102,7 @@ class Player {
         switch disaster {
             case .dragon:
             print("\n\n\n\(self.name) was eaten by a dragon, your journey ends here!".uppercased().centralized())
-            animations.printDust()
+            animations.printDragon()
             case .troll:
             print("\n\n\n\(self.name) was smashed by a troll, farewell young warrior!".uppercased().centralized())
             animations.printSmash()
@@ -130,14 +122,13 @@ class Player {
     }
 
     func damage() -> Int {
-//        Thread.sleep(forTimeInterval: 2)
+        Thread.sleep(forTimeInterval: 0.5)
         print("\n\(name) rolls for damage!\n")
         _ = readLine()
-        // D6.printRollingDice()
         let damageRoll = rollDice(6)
         animations.printRollingD6()
         animations.printd6(result: damageRoll)
-//        Thread.sleep(forTimeInterval: 1)
+        Thread.sleep(forTimeInterval: 0.6)
         print("\(name) deals \(damageRoll) damage!\n")
         return damageRoll
     }

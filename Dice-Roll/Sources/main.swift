@@ -31,22 +31,27 @@ func setName() -> String {
     return typedName
 }
 
-animations.printTitle()
+
+var player1 : Player
+var player2 : Player
 var answer = "n"
-//repeat {
+
+repeat {
     
+    animations.printTitle()
     print("\n\n\nEnter the names of the players:\n")
     print("Player 1: ")
     
-    var player1 = Player(name: setName())
+    player1 = Player(name: setName())
     
     print("\nPlayer 2: ")
-    var player2 = Player(name: setName())
+    player2 = Player(name: setName())
 //    initialSong.pause()
     for round in 1...5 {
-        //    Thread.sleep(forTimeInterval: 2)
+        Thread.sleep(forTimeInterval: 0.5)
         
         print("\n//----------------ROUND \(round)----------------//".centralized())
+        animations.status(player1: player1, player2: player2)
         game.playGame()
         if !player1.isPlayerAlive() || !player2.isPlayerAlive() {
             if !player1.isPlayerAlive() {
@@ -54,7 +59,6 @@ var answer = "n"
             } else {
                 animations.whoWins(winner: player1.name, loser: player2.name)
             }
-            
             
             break
         }
@@ -64,10 +68,9 @@ var answer = "n"
         }
     }
     
-    //Thread.sleep(forTimeInterval: 2)
+    Thread.sleep(forTimeInterval: 1)
     animations.printGameOver()
-//    print("\n\n Would you like to play again?")
-    guard let answer = readLine() else {
-        fatalError()
-    }
-//} while answer.lowercased() == "y"
+    print("\n\n Would you like to play again?")
+    answer = readLine() ?? "n"
+    
+} while answer.lowercased() == "y"

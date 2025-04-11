@@ -28,35 +28,32 @@ class DiceGame {
                         
                     }
                     
-                    animations.status()
+                    animations.status(player1: player1, player2: player2)
                     
                 } else if defense == .DisasterDefense {
+                    player1.health = 0
                     return
                     
                 } else if defense == .FailDefense {
                     player2.loseHealth(amount: player1.damage())
         
                     if !(player2.isPlayerAlive()) {
-        //                Thread.sleep(forTimeInterval: 2)
                         animations.printSlay()
-//                        animations.whoWins(winner: player1.name, loser: player2.name)
                         return
                     }
                     
-                    animations.status()
+                    animations.status(player1: player1, player2: player2)
                 }
             case .PerfectAttack:
                 player2.loseHealth(amount: player1.damage())
             
             if !(player2.isPlayerAlive()) {
-                //            Thread.sleep(forTimeInterval: 2)
                 animations.printSlay()
-//                animations.whoWins(winner: player1.name, loser: player2.name)
                 return
             }
                 
-            animations.status()
-                
+            animations.status(player1: player1, player2: player2)
+            
             case .DisasterAttack:
                 player1.health = 0
             
@@ -77,45 +74,37 @@ class DiceGame {
                         player2.loseHealth(amount: player1.damage())
         
                         if !(player2.isPlayerAlive()) {
-        //                    Thread.sleep(forTimeInterval: 2)
                             animations.printSlay()
-//                            animations.whoWins(winner: player1.name, loser: player2.name)
                             return
                         }
                         
-                         animations.status()
-                        
+                         animations.status(player1: player1, player2: player2)
+                         
                     } else if defense == .DisasterDefense{
                         player1.health = 0
-                        player1.disaster()
-                        //print de morte
                         return
                         
                     } else if defense == .FailDefense {
                         player1.loseHealth(amount: player2.damage())
         
                         if !(player1.isPlayerAlive()) {
-        //                    Thread.sleep(forTimeInterval: 2)
                             animations.printSlay()
-//                            animations.whoWins(winner: player2.name, loser: player1.name)
                             return
                         }
                         
-                        animations.status()
+                        animations.status(player1: player1, player2: player2)
                     }
             case .PerfectAttack:
                 player1.loseHealth(amount: player2.damage())
             
                 if !(player1.isPlayerAlive()) {
-        //            Thread.sleep(forTimeInterval: 2)
                     animations.printSlay()
-//                    animations.whoWins(winner: player2.name, loser: player1.name)
                         return
                     
                 }
             
-            animations.status()
-                
+            animations.status(player1: player1, player2: player2)
+            
             case .DisasterAttack:
                 player2.health = 0
                 player2.disaster()
@@ -124,8 +113,6 @@ class DiceGame {
             default:
                 break
         }
-        
-        animations.status()
         
     }
 }
