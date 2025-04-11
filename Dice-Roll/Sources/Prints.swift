@@ -108,6 +108,118 @@ class Prints {
         
     }
     
+    func printRollingD6() {
+
+        let rolling1 = """
+            "        ___",
+            "      /'\\         \\",
+            "     / ● \\    ●    \\",
+            "    /     \\___\\",
+            "    \\     /  ●      /",
+            "     \\ ● /     ●   /",
+            "      \\./____●/"
+        """
+
+        let rolling2 = """
+            "        ___",
+            "      /            /'\\",
+            "     /    ●    / ● \\",
+            "    /___/     \\",
+            "    \\        ●\\     /",
+            "     \\     ●   \\ ● /",
+            "      \\●__\\./"
+        """
+
+        clearTerminal()
+        for _ in 1...3 {
+            print(rolling1)
+            Thread.sleep(forTimeInterval: 0.4)
+            clearTerminal()
+            print(rolling2)
+            Thread.sleep(forTimeInterval: 0.4)
+            clearTerminal()
+        }
+    }
+    
+    func printd6(result: Int) {
+        let dice1 = """
+            "    /______ /",
+            "    |              | ",
+            "    |              | ",
+            "    |       ●      | ",
+            "    |              | ",
+            "    |              |/",
+            "     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾  "
+        """
+
+        let dice2 = """
+            "    /______ /",
+            "    |              | ",
+            "    |   ●          | ",
+            "    |              | ",
+            "    |          ●   | ",
+            "    |              |/",
+            "     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾  "
+        """
+
+        let dice3 = """
+            "    /______ /",
+            "    |            ● | ",
+            "    |              | ",
+            "    |       ●      | ",
+            "    |              | ",
+            "    |  ●           |/",
+            "     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾  "
+        """
+
+        let dice4 = """
+            "    /______ /",
+            "    |              | ",
+            "    |   ●      ●   | ",
+            "    |              | ",
+            "    |   ●      ●   | ",
+            "    |              |/",
+            "     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾  "
+        """
+
+        let dice5 = """
+            "    /______ /",
+            "    |  ●        ●  | ",
+            "    |              | ",
+            "    |       ●      | ",
+            "    |              | ",
+            "    |  ●        ●  |/",
+            "     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾  "
+        """
+
+        let dice6 = """
+            "    /______ /",
+            "    |   ●      ●   | ",
+            "    |              | ",
+            "    |   ●      ●   | ",
+            "    |              | ",
+            "    |   ●      ●   |/",
+            "     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾  "
+        """
+        
+        switch result {
+        case 1:
+            print(dice1)
+        case 2:
+            print(dice2)
+        case 3:
+            print(dice3)
+        case 4:
+            print(dice4)
+        case 5:
+            print(dice5)
+        case 6:
+            print(dice6)
+        default:
+            print(dice6)
+        }
+    }
+    
     func printd20(result : Int) {
             let dice1 =
             """
@@ -971,9 +1083,7 @@ class Prints {
             }
     
         }
-    func printd6() {
-        
-    }
+    
     func printDragon() {
         let dragonArt = """
         

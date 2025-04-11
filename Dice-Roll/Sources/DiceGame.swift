@@ -7,13 +7,6 @@
 import Foundation
 import ColorizeSwift
 
-enum Direction {
-    case up, down, left, right
-}
-
-typealias Point = (x: Int, y: Int)
-
-
 class DiceGame {
 
     func playGame() {

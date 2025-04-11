@@ -135,6 +135,8 @@ class Player {
         _ = readLine()
         // D6.printRollingDice()
         let damageRoll = rollDice(6)
+        animations.printRollingD6()
+        animations.printd6(result: damageRoll)
 //        Thread.sleep(forTimeInterval: 1)
         print("\(name) deals \(damageRoll) damage!\n")
         return damageRoll
